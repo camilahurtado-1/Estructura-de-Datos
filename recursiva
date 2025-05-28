@@ -1,0 +1,39 @@
+Cabezera de la clase
+#include "Operaciones.h"
+#include <iostream>
+
+using namespace std;
+Operaciones::Operaciones() {
+	a = 4;
+	b = 5.3;
+
+};
+float Operaciones::CalcularSuma(); {
+	suma = a + b;
+	cout << "El resultado es:" << suma;
+
+}
+Incrementacion
+#pragma once
+#include <string>
+using namespace std;
+class Operaciones
+{
+private:
+	float a;
+	float b;
+	float suma;
+public:
+	Operaciones(); //Esto es un metodo
+	float CalcularSuma();
+};
+Main 
+#include <iostream>
+#include "Operaciones.h"
+using namespace std;
+int main()
+{
+    Operaciones Operacioncitas;
+    Operacioncitas.CalcularSuma();
+    
+}
