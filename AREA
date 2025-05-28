@@ -1,0 +1,43 @@
+Cabezera de la clase
+#pragma once
+class Circulo
+{
+	private:
+		float radio;
+	public:
+		Circulo();
+		float get_radio();
+		void set_radio(float _radio);
+		double CalcularArea()
+};
+La Incrementacion de la clase
+#include "Circulo.h"
+#include "math.h"
+
+Circulo::Circulo() {
+
+}
+float Circulo::get_radio() {
+	return radio;
+}
+void Circulo::set_radio(float _radio) {
+	radio = _radio;
+} 
+double Circulo::CalcularArea() {
+	return 3.141516 * pow(radio,2);
+};
+Main del programa
+#include <iostream>
+#include "Circulo.h"
+
+using namespace std;
+
+int main()
+{
+    float r;
+    Circulo circulito;
+    cout << "Ingrese el radio: ";
+    cin >> r;
+    circulito.set_radio(r);
+    cout << "El area es: " << circulito.CalcularArea();
+}
