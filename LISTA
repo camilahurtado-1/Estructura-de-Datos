@@ -1,0 +1,304 @@
+⌐■_■)DATO.H
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Dato {
+private:
+    int codigo;
+    string nombre;
+    string carrera;
+
+public:
+   
+    Dato();
+    void setCodigo(int c);
+    void setNombre(const string& n);
+    void setCarrera(const string& c);
+    int getCodigo();
+    string getNombre();
+    string getCarrera();
+};
+
+
+
+༼ つ ◕_◕ ༽つNODO.H
+#include <iostream>
+#include <string>
+#include "Nodo.h"
+
+using namespace std;
+
+Nodo::Nodo() {
+    puntero = nullptr;
+}
+
+void Nodo::setDato(const Dato& d) { 
+    dato = d; 
+}
+Dato Nodo::getDato() {
+    return dato; 
+}
+
+void Nodo::setPuntero(Nodo* p) { 
+    puntero = p; 
+}
+Nodo* Nodo::getPuntero() { 
+    return puntero; 
+}
+
+void Nodo::Encolar(Nodo*& inicio, Nodo*& fin) {
+    Nodo* nuevo = new Nodo();
+    Dato d;
+    int codigo;
+    string nombre, carrera;
+
+    cout << "Codigo: ";
+    cin >> codigo;
+    cin.ignore();
+    cout << "Nombre: ";
+    getline(cin, nombre);
+    cout << "Carrera: ";
+    getline(cin, carrera);
+
+    d.setCodigo(codigo);
+    d.setNombre(nombre);
+    d.setCarrera(carrera);
+    nuevo->setDato(d);
+
+    if (inicio == nullptr) {
+        inicio = fin = nuevo;
+    }
+    else {
+        fin->setPuntero(nuevo);
+        fin = nuevo;
+    }
+}
+
+void Nodo::MostrarLista(Nodo* inicio) {
+    if (inicio == nullptr) {
+        cout << "La lista está vacía.\n";
+        return;
+    }
+
+    Nodo* actual = inicio;
+    while (actual != nullptr) {
+        Dato d = actual->getDato();
+        cout << "\nCódigo: " << d.getCodigo() << endl;
+        cout << "Nombre: " << d.getNombre() << endl;
+        cout << "Carrera: " << d.getCarrera() << endl;
+        cout << "--------------------------\n";
+        actual = actual->getPuntero();
+    }
+}
+
+void Nodo::EliminarPorCodigo(Nodo*& inicio, Nodo*& fin, int codigo) {
+    Nodo* actual = inicio;
+    Nodo* anterior = nullptr;
+
+    while (actual != nullptr && actual->getDato().getCodigo() != codigo) {
+        anterior = actual;
+        actual = actual->getPuntero();
+    }
+
+    if (actual == nullptr) {
+        cout << "No se encontró un nodo con ese código.\n";
+        return;
+    }
+
+    if (anterior == nullptr) {
+        inicio = actual->getPuntero();
+        if (inicio == nullptr) fin = nullptr;
+    }
+    else {
+        anterior->setPuntero(actual->getPuntero());
+        if (actual == fin) fin = anterior;
+    }
+
+    delete actual;
+    cout << "Nodo eliminado correctamente.\n";
+}
+
+
+(┬┬﹏┬┬)NODO.CPP
+#include <iostream>
+#include <string>
+#include "Nodo.h"
+
+using namespace std;
+
+Nodo::Nodo() {
+    puntero = nullptr;
+}
+
+void Nodo::setDato(const Dato& d) { 
+    dato = d; 
+}
+Dato Nodo::getDato() {
+    return dato; 
+}
+
+void Nodo::setPuntero(Nodo* p) { 
+    puntero = p; 
+}
+Nodo* Nodo::getPuntero() { 
+    return puntero; 
+}
+
+void Nodo::Encolar(Nodo*& inicio, Nodo*& fin) {
+    Nodo* nuevo = new Nodo();
+    Dato d;
+    int codigo;
+    string nombre, carrera;
+
+    cout << "Codigo: ";
+    cin >> codigo;
+    cin.ignore();
+    cout << "Nombre: ";
+    getline(cin, nombre);
+    cout << "Carrera: ";
+    getline(cin, carrera);
+
+    d.setCodigo(codigo);
+    d.setNombre(nombre);
+    d.setCarrera(carrera);
+    nuevo->setDato(d);
+
+    if (inicio == nullptr) {
+        inicio = fin = nuevo;
+    }
+    else {
+        fin->setPuntero(nuevo);
+        fin = nuevo;
+    }
+}
+
+void Nodo::MostrarLista(Nodo* inicio) {
+    if (inicio == nullptr) {
+        cout << "La lista está vacía.\n";
+        return;
+    }
+
+    Nodo* actual = inicio;
+    while (actual != nullptr) {
+        Dato d = actual->getDato();
+        cout << "\nCódigo: " << d.getCodigo() << endl;
+        cout << "Nombre: " << d.getNombre() << endl;
+        cout << "Carrera: " << d.getCarrera() << endl;
+        cout << "--------------------------\n";
+        actual = actual->getPuntero();
+    }
+}
+
+void Nodo::EliminarPorCodigo(Nodo*& inicio, Nodo*& fin, int codigo) {
+    Nodo* actual = inicio;
+    Nodo* anterior = nullptr;
+
+    while (actual != nullptr && actual->getDato().getCodigo() != codigo) {
+        anterior = actual;
+        actual = actual->getPuntero();
+    }
+
+    if (actual == nullptr) {
+        cout << "No se encontró un nodo con ese código.\n";
+        return;
+    }
+
+    if (anterior == nullptr) {
+        inicio = actual->getPuntero();
+        if (inicio == nullptr) fin = nullptr;
+    }
+    else {
+        anterior->setPuntero(actual->getPuntero());
+        if (actual == fin) fin = anterior;
+    }
+
+    delete actual;
+    cout << "Nodo eliminado correctamente.\n";
+}
+
+
+(●'◡'●)DATO.CPP
+#include "Dato.h"
+#include <iostream>
+#include <string>
+
+using  namespace std;
+
+Dato::Dato() {
+    codigo = 0;
+    nombre = "Unknown";
+    carrera = "Unknown";
+}
+
+void Dato::setCodigo(int c) { 
+    codigo = c; 
+}
+
+void Dato::setNombre(const string& n) {
+    nombre = n;
+}
+
+void Dato::setCarrera(const string& c) {
+    carrera = c;
+}
+
+int Dato::getCodigo() {
+    return codigo; 
+}
+
+string Dato::getNombre() {
+    return nombre; 
+}
+string Dato::getCarrera() { 
+    return carrera; 
+}
+
+( •_•)>⌐■-■INT MAIN
+#include <iostream>
+#include "Nodo.h"
+using namespace std;
+
+int main() {
+    Nodo* inicio = nullptr;
+    Nodo* fin = nullptr;
+    int opcion;
+
+    do {
+        cout << "\n----- MENU -----\n";
+        cout << "1. ¿La lista está vacía?\n";
+        cout << "2. Encolar (Agregar elemento)\n";
+        cout << "3. Mostrar lista\n";
+        cout << "4. Eliminar por código\n";
+        cout << "5. Salir\n";
+        cout << "Opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+        case 1:
+            cout << (inicio == nullptr ? "La lista está vacía.\n" : "La lista contiene elementos.\n");
+            break;
+        case 2:
+            Nodo::Encolar(inicio, fin);
+            break;
+        case 3:
+            Nodo::MostrarLista(inicio);
+            break;
+        case 4: {
+            int cod;
+            cout << "Ingrese el código del nodo a eliminar: ";
+            cin >> cod;
+            Nodo::EliminarPorCodigo(inicio, fin, cod);
+            break;
+        }
+        case 5:
+            cout << "Saliendo del programa.\n";
+            break;
+        default:
+            cout << "Opción inválida.\n";
+        }
+    } while (opcion != 5);
+
+    return 0;
+}
