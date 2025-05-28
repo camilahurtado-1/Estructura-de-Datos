@@ -1,0 +1,37 @@
+Cabezera de la clase
+#pragma once
+#include <string>
+using namespace std;
+class Mensaje
+{
+private:
+	//Datos
+	string mens;
+public:
+	//Constructor - métodos
+	Mensaje();
+	void mostrar();
+};
+
+La Incrementacion de la clase
+#include "Mensaje.h"
+#include <iostream>
+
+//Constructor - métodos
+Mensaje::Mensaje() {
+	mens = "Hola Mundo";
+}
+void Mensaje::mostrar() {
+	cout << "El mensaje es: " << Mensaje::mens;
+}
+
+Main del programa
+#include <iostream>
+# include "Mensaje.h"
+using namespace std;
+int main()
+{
+    Mensaje mensajito;
+    cout << "El mensaje es:"; 
+    mensajito.mostrar();
+}
